@@ -33,7 +33,7 @@ export async function POST(request: Request) {
   const breakdown: Array<{ date: string; rate: number }> = [];
 
   if (rates && rates.length === nights) {
-    rates.forEach(r => {
+    rates.forEach((r: any) => {
       totalPrice += Number(r.rate);
       breakdown.push({ date: r.date, rate: Number(r.rate) });
     });
