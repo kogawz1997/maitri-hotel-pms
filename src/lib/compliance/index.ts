@@ -63,7 +63,7 @@ export class TM30Service {
   // Generate Excel/CSV file for manual upload (fallback)
   generateBatchFile(reports: TM30Submission[]): string {
     const headers = ['Passport', 'Nationality', 'Name', 'Arrival', 'Hotel', 'Address'];
-    const rows = reports.map(r => [
+    const rows = reports.map((r: TM30Submission) => [
       r.passportNumber, r.nationality, r.fullName,
       r.arrivalDate, r.hotelName, r.hotelAddress,
     ].join(','));
@@ -147,7 +147,7 @@ export class ETaxService {
       <PartyName><Name>${invoice.buyerName}</Name></PartyName>
     </Party>
   </AccountingCustomerParty>
-  ${invoice.items.map((item, i) => `
+  ${invoice.items.map((item: ETaxInvoice['items'][number], i: number) => `
   <InvoiceLine>
     <ID>${i + 1}</ID>
     <InvoicedQuantity>${item.quantity}</InvoicedQuantity>

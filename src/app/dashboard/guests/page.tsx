@@ -32,8 +32,8 @@ export default async function GuestsPage({ searchParams }: { searchParams: Promi
   const { data: guests } = await query.order('total_revenue', { ascending: false }).limit(100);
 
   const totalGuests = guests?.length || 0;
-  const vipCount = guests?.filter(g => g.vip_status).length || 0;
-  const totalRevenue = guests?.reduce((s, g) => s + Number(g.total_revenue || 0), 0) || 0;
+  const vipCount = guests?.filter((g: any) => g.vip_status).length || 0;
+  const totalRevenue = guests?.reduce((s: number, g: any) => s + Number(g.total_revenue || 0), 0) || 0;
 
   return (
     <div className="container max-w-7xl py-8 animate-fade-in">
@@ -90,7 +90,7 @@ export default async function GuestsPage({ searchParams }: { searchParams: Promi
                 </tr>
               </thead>
               <tbody>
-                {guests?.map(g => (
+                {guests?.map((g: any) => (
                   <tr key={g.id} className="border-b border-border/50 hover:bg-secondary/30 transition-colors group">
                     <td className="px-6 py-3">
                       <div className="flex items-center gap-3">

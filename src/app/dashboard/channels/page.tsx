@@ -26,7 +26,7 @@ export default async function ChannelsPage() {
   const { data: connections } = await supabase
     .from('channel_connections').select('*').eq('hotel_id', hotels[0].id);
 
-  const connMap = new Map(connections?.map(c => [c.channel, c]));
+  const connMap = new Map(connections?.map((c: any) => [c.channel, c]));
 
   return (
     <div className="container max-w-7xl py-8 animate-fade-in">

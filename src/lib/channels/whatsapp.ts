@@ -27,7 +27,7 @@ export const whatsappAdapter: ChannelAdapter = {
         language: { code: 'en_US' },
         components: opts.templateVariables ? [{
           type: 'body',
-          parameters: Object.values(opts.templateVariables).map(v => ({ type: 'text', text: v })),
+          parameters: Object.values(opts.templateVariables).map((v: string) => ({ type: 'text', text: v })),
         }] : [],
       };
     } else if (opts.type === 'image' && opts.mediaUrl) {

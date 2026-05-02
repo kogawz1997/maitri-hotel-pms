@@ -122,7 +122,7 @@ export async function generateGuestReply(opts: {
 ${opts.hotelInfo.address ? `- Address: ${opts.hotelInfo.address}` : ''}
 ${opts.hotelInfo.amenities?.length ? `- Amenities: ${opts.hotelInfo.amenities.join(', ')}` : ''}
 
-${opts.knowledgeBase?.length ? `# Knowledge Base\n${opts.knowledgeBase.map(k => `## ${k.title}\n${k.content}`).join('\n\n')}` : ''}
+${opts.knowledgeBase?.length ? `# Knowledge Base\n${opts.knowledgeBase.map((k: NonNullable<typeof opts.knowledgeBase>[number]) => `## ${k.title}\n${k.content}`).join('\n\n')}` : ''}
 
 ${opts.reservationContext ? `# Current Guest Context
 - Name: ${opts.reservationContext.guestName || 'Unknown'}
@@ -139,7 +139,7 @@ Respond ONLY in ${LANGUAGE_NAMES[opts.guestLanguage]}.
 If you cannot answer or this needs human attention, respond with exactly:
 ESCALATE: <reason in English>`;
 
-  const messages = opts.conversationHistory.map(msg => ({
+  const messages = opts.conversationHistory.map((msg: typeof opts.conversationHistory[number]) => ({
     role: (msg.role === 'guest' ? 'user' : 'assistant') as 'user' | 'assistant',
     content: msg.text,
   }));

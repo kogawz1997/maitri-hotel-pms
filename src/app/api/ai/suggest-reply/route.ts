@@ -28,7 +28,7 @@ export async function POST(request: Request) {
     .order('created_at', { ascending: true })
     .limit(20);
 
-  const history = (messages || []).map(m => ({
+  const history = (messages || []).map((m: any) => ({
     role: m.sender_type === 'guest' ? 'guest' as const : 'staff' as const,
     text: m.original_text || '',
   }));
